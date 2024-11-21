@@ -1,3 +1,3 @@
 # DENSE_Sim
 
-Code to be provided upon publication of related research
+Code to be uploaded upon publication of related research.
