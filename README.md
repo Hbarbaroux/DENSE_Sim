@@ -39,7 +39,7 @@ Dilation can be applied to the LV mask, and twist angle, general motion scaling 
 
 ### IV. DENSE generation
 
-Previously generated high-res motion can be used to generate DENSE images. Capabilities have been added to support spiral sampling, k-space noise, phase cycling. The specific spiral pattern, ke, kd and echo time can be changed, alongside T1, T2 and S0 parameters for the different tissues (can be edited to match 1.5T or 3T).
+Previously generated high-res motion can be used to generate DENSE images. Capabilities have been added to support spiral sampling, k-space noise, phase cycling. The specific spiral pattern, ke, kd and echo time can be changed, alongside T1, T2 and S0 parameters for the different tissues (can be edited to match 1.5T or 3T). This work extends previous work from Loecher et al. for tagging (https://github.com/mloecher/tag_tracking).
 
 > [!CAUTION]
 > The code is currently set-up and validated for spiral sampling with interleaves. It needs to be cleaned up and updated to support flexibility with the sampling pattern wanted (ie adding Cartesian sampling and defining proper sampling classes easily extendable).
