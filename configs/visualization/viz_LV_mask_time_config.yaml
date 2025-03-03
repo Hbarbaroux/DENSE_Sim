@@ -1,0 +1,5 @@
+name: viz_config
+
+params:
+  mode: 2D+time
+  data: "../data_samples/cardiac_motions/phantom/subject_1/LV_mask_time.npy"

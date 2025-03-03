@@ -1,0 +1,4 @@
+final_img_size: 360
+input_file: subject_1_act.bin
+lv_tissue_id: 1
+xcat_act_img_size: 1000

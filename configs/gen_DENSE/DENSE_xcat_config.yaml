@@ -1,0 +1,67 @@
+name: DENSE_xcat_config
+
+general_params:
+  subjects:
+  background_input:
+  cardiac_motion_folder: ../data_samples/cardiac_motions/xcat
+  output_folder: ../data_samples/DENSE_images/xcat
+  template_dns_file: ../configs/gen_DENSE/template.dns
+  slice_cat: mid
+  LV_label: 1
+  dict_act:
+    myoLV_act: 1
+    myoRV_act: 2
+    bldplLV_act: 5
+    bldplRV_act: 6
+
+sim_params:
+  outer_mask_file: ../configs/gen_DENSE/dicom_outer_mask.npy
+  do_density: True
+  use_gpu: False
+  ke: 0.1
+  kd: 0.08
+  te: 1.08
+  max_flip: 15
+  SNR_range: [1800, 1801]
+  phase_cycling_nbr: 2
+  k_sampling_params: 
+    interleaves: 4
+    interleaves_per_cycle: 2
+    spDWELL: 10e-6
+    ADCdwell: 2e-6
+    spiral_form_file: ../configs/gen_DENSE/spiralxy.txt
+  N_im_pre_spiral: 60
+  Nt: [20, 75]
+  output_dim:
+    sizes: [128, 90]
+    weights: [0.5, 0.5]
+    FOVs: [[224, 224, 8], [200, 200, 8]]
+
+tissue_params:
+  T1:
+      muscle: 1200.0
+      heart: 1150.0
+      fat: 400.0
+      blood: 500.0
+      liver: 800.0
+      bone: 1250.0
+      air: 0.0
+      marrow: 300.0
+  T2:
+      muscle: 35.0
+      heart: 45.0
+      fat: 100.0
+      blood: 15.0
+      liver: 35.0
+      bone: 35.0
+      air: 0.0
+      marrow: 120.0
+  S0:
+      muscle: 0.4
+      heart: 0.6
+      fat: 0.1
+      blood: 1
+      liver: 0.5
+      bone: 0.8
+      air: 0.0
+      marrow: 0.7

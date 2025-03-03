@@ -1,0 +1,17 @@
+name: motion_invivo_config
+
+params:
+  mode: invivo
+  input_folder: ../data_samples/backgrounds/invivo
+  output_folder: ../data_samples/cardiac_motions/invivo
+  subjects:  # If set, only considers the given subjects in the input folder for simulation
+  number: 2 # If number is set, generates that number of subjects from random contours in the input folder
+            # If not set, generates one simulation per contour
+  twist_angle: [-0.5, 0.5]
+  size: 240
+  radial_exponent:
+  Nt: [54, 79]
+  subject_name_rule: # If not set, considers subject folders to be named "subject_1", "subject_2", etc.
+  bin_dilation: [2, 8] # Mask dilation, applied on the high res mask. If list of 2 elements, random choice for each simulation
+  motion_scaler: [1, 2.5] # Scales the motion amplitude. If list of 2 elements, random choice for each simulation
+  debug: false

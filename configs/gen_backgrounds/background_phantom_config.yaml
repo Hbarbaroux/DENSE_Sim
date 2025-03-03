@@ -1,0 +1,9 @@
+name: background_phantom_config
+
+params:
+  mode: phantom
+  output_folder: ../data_samples/backgrounds/phantom
+  image_size: 240
+  nbr_backgrounds: 2
+  in_radius: [0.5, 0.8]
+  out_radius: [96, 144]

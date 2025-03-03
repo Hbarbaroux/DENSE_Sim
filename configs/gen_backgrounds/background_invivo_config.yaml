@@ -1,0 +1,7 @@
+name: background_invivo_config
+
+params:
+  mode: invivo
+  input_folder: ../data_samples/pre_generated/from_invivo
+  output_folder: ../data_samples/backgrounds/invivo
+  nbr_backgrounds: 2

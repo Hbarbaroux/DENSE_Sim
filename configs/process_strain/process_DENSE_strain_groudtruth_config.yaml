@@ -1,0 +1,14 @@
+name: process_DENSE_strain_groudtruth_config
+
+params:
+  motion_folder: "../data_samples/cardiac_motions/phantom"
+  DENSE_folder: "../data_samples/DENSE_images/phantom"
+  files:
+  path_Ecc: "strain/Ecc.npy"
+  path_Err: "strain/Err.npy"
+  path_dx: "dx_pixel.npy"
+  path_dy: "dy_pixel.npy"
+  path_motion_mask: # If not set, assumes that strain maps have nans outside of myocardium
+  path_DENSE_mask: "LV_mask_time_lowres.npy"
+  output_suffix: ""
+  method: "from_strain" # "from_strain" or "from_motion". If 'from_strain', ground-truth Ecc and Err are used. If 'from_motion', ground-truth displacements are used.

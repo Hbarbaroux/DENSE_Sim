@@ -1,0 +1,10 @@
+name: background_xcat_config
+
+params:
+  mode: xcat
+  input_folder: ../data_samples/pre_generated/from_xcat
+  output_folder: ../data_samples/backgrounds/xcat
+  xcat_act_img_size: 1000
+  final_img_size: 360
+  nbr_backgrounds: 1
+  lv_tissue_kd: 1

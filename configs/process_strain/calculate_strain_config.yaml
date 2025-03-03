@@ -1,0 +1,12 @@
+name: calculate_strain_config
+
+params:
+  base_folder: "../data_samples/cardiac_motions/xcat"
+  files:
+  path_dx: "dx_pixel.npy"
+  path_dy: "dy_pixel.npy"
+  path_mask: "LV_mask_time.npy"
+  transpose: True
+  invert: False
+  filter:
+  output_folder_subpath: "strain"

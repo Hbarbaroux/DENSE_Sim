@@ -1,0 +1,5 @@
+name: viz_config
+
+params:
+  mode: 2D+time
+  data: "../data_samples/DENSE_images/phantom/subject_1/phase_x.npy"
