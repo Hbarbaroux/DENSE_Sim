@@ -1,15 +1,7 @@
-import hdf5storage
-from PIL import Image
 import numpy as np
-import matplotlib.pyplot as plt
-from scipy import io
-import h5py
-
-import sys, os
 
 from pygrid_internal import pygrid as pygrid
 from pygrid_internal import c_grid as c_grid
-from pygrid_internal import utils as pygrid_utils
 
 class SimObject:
     def __init__(self):
