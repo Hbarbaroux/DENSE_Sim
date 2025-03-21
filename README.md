@@ -17,7 +17,7 @@ To finish setting up, as in https://github.com/mloecher/tag_tracking, this code 
 
 ### I. Code structure
 
-- [configs/](configs/): config file examples. Most scripts can be run using ```python {script.py} -c {config_path.py}```.
+- [configs/](configs/): config file examples. Most scripts can be run using ```python {script.py} -c {config_path.yaml}```.
 - [data_samples/](data_samples/): examples of generated data using the pipeline modules.
 - [main/](main/): main code.
 - [visualization/](visualization/): simple script to visualise 2D/2D+time sequences using matplotlib. Can easily be extended.
