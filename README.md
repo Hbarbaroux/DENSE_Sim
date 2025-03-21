@@ -9,7 +9,9 @@ It implements the methods described in the JCMR paper https://doi.org/10.1016/j.
 
 You can install the required packages using the [requirements file](requirements.txt).
 
-The DENSE simulation module can create a [DENSEanalysis](https://github.com/denseanalysis/denseanalysis) workspace using the simulated images and ground-truth LV contours. This part calls some Matlab code, for which the Matlab engine package for Python needs to be installed separately: https://uk.mathworks.com/help/matlab/matlab_external/call-matlab-functions-from-python.html.
+> [!IMPORTANT]
+> The DENSE simulation module can create a [DENSEanalysis](https://github.com/denseanalysis/denseanalysis) workspace using the simulated images and ground-truth LV contours. This part calls some Matlab code, for which the Matlab engine package for Python needs to be installed separately: https://uk.mathworks.com/help/matlab/matlab_external/call-matlab-functions-from-python.html.
+> If you don't want to support this, the Matlab imports in [main/gen_DENSE/run_DENSE_sim.py](main/gen_DENSE/run_DENSE_sim.py) should be disabled, along with the functions `get_matlab_contours()` and `save_dns_data()`.
 
 To finish setting up, as in https://github.com/mloecher/tag_tracking, this code requires a C library to be built for gridding. Running `python setup.py build_ext --inplace` should build everything. If you are using XCode on Mac for C compiling, replace `setup.py` with `setup_xcode.py` (this disables openMP because stock Mac XCode doesn't support it).
 
