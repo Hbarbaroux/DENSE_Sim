@@ -61,6 +61,7 @@ High-res ground-truth strain from generated displacements and corresponding low-
 - [ ] Add background tissues option into the DENSE module
 - [ ] Add effective magnitude SNR calculation after DENSE generation to save into output config
 - [ ] Add retry routine by lowering the global displacement scaling parameter in the motion module (currently, if simulation leads to no blood pool at a certain frame, simulation is considered failed and skipped).
+- [ ] Add option to disable Matlab imports and .dns saving in configs
 
 ## Citation
 
