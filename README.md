@@ -7,7 +7,7 @@ It implements the methods described in the JCMR paper https://doi.org/10.1016/j.
      
 ## Installation & set-up
 
-You can install the required packages using the [requirements file](docs/install.md).
+You can install the required packages using the [requirements file](requirements.txt).
 
 The DENSE simulation module can create a [DENSEanalysis](https://github.com/denseanalysis/denseanalysis) workspace using the simulated images and ground-truth LV contours. This part calls some Matlab code, for which the Matlab engine package for Python needs to be installed separately: https://uk.mathworks.com/help/matlab/matlab_external/call-matlab-functions-from-python.html.
 
