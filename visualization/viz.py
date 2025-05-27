@@ -1,4 +1,5 @@
 import numpy as np
+import nibabel as nib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
@@ -9,25 +10,41 @@ def main(params, verbose, **kwargs):
         raise ValueError("Please provide a mode.")
     if params.get("data") is None:
         raise ValueError("Please provide a data file.")
+    
+    if params.get("data_format") not in ["numpy", "nifti"]:
+        raise ValueError("Data format {} not recognized. Choose from 'numpy', 'nifti'.".format(params["data_format"]))
+    if params["data_format"] == "nifti":
+        data = nib.load(params["data"]).get_fdata()
+    else:
+        data = np.load(params["data"])
+
+    if params.get("cmap") is None: params["cmap"] = "gray"
 
     if params["mode"] == "2D":
-        data = np.load(params["data"])
+        if len(data.shape) == 3:
+            if params.get("frame") is None or params["frame"] >= data.shape[0] or params["frame"] < 0:
+                raise ValueError("Please provide a valid frame.")
+            data = data[params["frame"]]
         if params.get("vmin") is not None and params.get("vmax") is not None:
-            plt.imshow(data, vmin=params["vmin"], vmax=params["vmax"])
+            plt.imshow(data, vmin=params["vmin"], vmax=params["vmax"], cmap=params["cmap"])
         else:
-            plt.imshow(data)
+            plt.imshow(data, cmap=params["cmap"])
         plt.show()
     elif params["mode"] == "2D+time":
-        data = np.load(params["data"])
         fig, ax = plt.subplots(1,1,squeeze=False)
+        plt.axis('off')
         if params.get("vmin") is not None and params.get("vmax") is not None:
-            I = ax[0,0].imshow(data[0], vmin=params["vmin"], vmax=params["vmax"])
+            I = ax[0,0].imshow(data[0], vmin=params["vmin"], vmax=params["vmax"], cmap=params["cmap"])
         else:
-            I = ax[0,0].imshow(data[0])
+            I = ax[0,0].imshow(data[0], cmap=params["cmap"])
         def animate(i):
             I.set_array(data[i])
             return I,
         ani = animation.FuncAnimation(fig, animate, interval=50, frames=range(0,data.shape[0]), repeat=True)
+        if params.get("save"):
+            writer = animation.PillowWriter(fps=15,
+                                            bitrate=1800)
+            ani.save(params["save_file"], writer=writer)
         plt.show()
     else:
         raise ValueError("Mode {} not recognized. Choose from '2D', '2D+time'.".format(params["mode"]))

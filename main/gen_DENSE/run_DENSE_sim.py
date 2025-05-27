@@ -1,10 +1,8 @@
 import os
 import numpy as np
-import sys
 import matlab.engine as mtlb
 from scipy.ndimage import binary_fill_holes, morphology
 from skimage.morphology import disk
-from skimage.transform import rescale
 from scipy.ndimage import center_of_mass, binary_closing
 from skimage.measure import profile_line
 from scipy.interpolate import interp1d
@@ -15,7 +13,6 @@ import yaml
 import sigpy as sp
 from sigpy.mri import dcf
 from skimage.filters import window
-import matplotlib.pyplot as plt
 from scipy.signal.windows import kaiser, hamming
 from skimage.transform import resize
 
