@@ -3,3 +3,8 @@ name: viz_config
 params:
   mode: 2D+time
   data: "../data_samples/DENSE_images/phantom/subject_1/magnitude.npy"
+  data_format: "numpy"
+  save: True
+  save_file: "../data_samples/DENSE_images/phantom/subject_1/magnitude.gif"
+  cmap: "gray"
+  frame:
