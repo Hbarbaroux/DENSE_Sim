@@ -7,9 +7,12 @@ It implements the methods described in the JCMR paper https://doi.org/10.1016/j.
      
 ## Installation & set-up
 
-You can install the required packages using the [requirements file](docs/install.md).
+You can install the required packages using the [requirements file](requirements.txt).
 
-The DENSE simulation module can create a [DENSEanalysis](https://github.com/denseanalysis/denseanalysis) workspace using the simulated images and ground-truth LV contours. This part calls some Matlab code, for which the Matlab engine package for Python needs to be installed separately: https://uk.mathworks.com/help/matlab/matlab_external/call-matlab-functions-from-python.html.
+> [!IMPORTANT]
+> The DENSE simulation module can create a [DENSEanalysis](https://github.com/denseanalysis/denseanalysis) workspace using the simulated images and ground-truth LV contours. This part calls some Matlab code, for which the Matlab engine package for Python needs to be installed separately: https://uk.mathworks.com/help/matlab/matlab_external/call-matlab-functions-from-python.html.
+>
+> If you don't want to support this, the Matlab imports in [main/gen_DENSE/run_DENSE_sim.py](main/gen_DENSE/run_DENSE_sim.py) should be disabled, along with the functions `get_matlab_contours()` and `save_dns_data()`.
 
 To finish setting up, as in https://github.com/mloecher/tag_tracking, this code requires a C library to be built for gridding. Running `python setup.py build_ext --inplace` should build everything. If you are using XCode on Mac for C compiling, replace `setup.py` with `setup_xcode.py` (this disables openMP because stock Mac XCode doesn't support it).
 
@@ -17,7 +20,7 @@ To finish setting up, as in https://github.com/mloecher/tag_tracking, this code 
 
 ### I. Code structure
 
-- [configs/](configs/): config file examples. Most scripts can be run using ```python {script.py} -c {config_path.py}```.
+- [configs/](configs/): config file examples. Most scripts can be run using ```python {script.py} -c {config_path.yaml}```.
 - [data_samples/](data_samples/): examples of generated data using the pipeline modules.
 - [main/](main/): main code.
 - [visualization/](visualization/): simple script to visualise 2D/2D+time sequences using matplotlib. Can easily be extended.
@@ -39,7 +42,7 @@ Dilation can be applied to the LV mask, and twist angle, general motion scaling 
 
 ### IV. DENSE generation
 
-Previously generated high-res motion can be used to generate DENSE images. Capabilities have been added to support spiral sampling, k-space noise, phase cycling. The specific spiral pattern, ke, kd and echo time can be changed, alongside T1, T2 and S0 parameters for the different tissues (can be edited to match 1.5T or 3T).
+Previously generated high-res motion can be used to generate DENSE images. Capabilities have been added to support spiral sampling, k-space noise, phase cycling. The specific spiral pattern, ke, kd and echo time can be changed, alongside T1, T2 and S0 parameters for the different tissues (can be edited to match 1.5T or 3T). This work extends previous work from Loecher et al. for tagging (https://github.com/mloecher/tag_tracking).
 
 > [!CAUTION]
 > The code is currently set-up and validated for spiral sampling with interleaves. It needs to be cleaned up and updated to support flexibility with the sampling pattern wanted (ie adding Cartesian sampling and defining proper sampling classes easily extendable).
@@ -58,6 +61,7 @@ High-res ground-truth strain from generated displacements and corresponding low-
 - [ ] Add background tissues option into the DENSE module
 - [ ] Add effective magnitude SNR calculation after DENSE generation to save into output config
 - [ ] Add retry routine by lowering the global displacement scaling parameter in the motion module (currently, if simulation leads to no blood pool at a certain frame, simulation is considered failed and skipped).
+- [ ] Add option to disable Matlab imports and .dns saving in configs
 
 ## Citation
 
