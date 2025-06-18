@@ -1,6 +1,7 @@
 import os
 import cv2
 import sys
+import glob
 import random
 import numpy as np
 from pathlib import Path
@@ -360,8 +361,8 @@ def gen_deformation(mask, Nt=30, motion_scaler=1, motion_blur=1.0, twist_angle=0
     r0_lv_NN = r0_NN[:r0_lv.shape[0]]
 
     # Generate the motion parameters that define general contraction motion
-    r_a = np.random.uniform(0.0, 0.006) * np.ones_like(init_rad)
-    r_a[:r0_lv.shape[0]] += np.random.uniform(0.003, 0.008)*(lv_rad**radial_exponent)
+    r_a = np.random.uniform(0.001, 0.007) * np.ones_like(init_rad) #0.004 * np.ones_like(init_rad) #np.random.uniform(0.001, 0.007) * np.ones_like(init_rad) #np.random.uniform(0.0, 0.006) * np.ones_like(init_rad)
+    r_a[:r0_lv.shape[0]] += np.random.uniform(0.0015, 0.0055) * lv_rad * (radial_exponent - 1) + np.random.uniform(0.0035, 0.0095) * (lv_rad**radial_exponent) #0.004 * lv_rad * (radial_exponent / 2) + 0.0075 * (lv_rad ** radial_exponent) #np.random.uniform(0.002, 0.006) * lv_rad + np.random.uniform(0.004, 0.011) * (lv_rad**radial_exponent) #np.random.uniform(0.003, 0.008)*(lv_rad**radial_exponent)
     if not LV_only:
         r_a[r0_lv.shape[0]:] += np.random.uniform(0.04, 0.14)*(init_rad[r0_lv.shape[0]:]**2.0)*rv_rad
         r_a[r0_lv.shape[0]:] += np.random.uniform(0.003, 0.008)*rv_rad
@@ -692,7 +693,7 @@ def main(params, verbose, **kwargs):
 
         if verbose:
             print("Simulation {}/{} completed: '{}' from '{}' contour".format(
-                i+1, params["number"], subject_name, input_subjects[i]
+                i+1, len(files), subject_name, input_subjects[i]
             ))
 
     number = params["number"] if params["number"] else len(files)
